@@ -3,6 +3,27 @@ import "./Rps.css";
 
 function Result(props) {
   const res = props.my - props.com;
+  let p = "";
+  switch (res) {
+    case -2:
+      p = "win";
+      break;
+    case -1:
+      p = "lose";
+      break;
+    case 0:
+      p = "tie";
+      break;
+    case 1:
+      p = "win";
+      break;
+    case 2:
+      p = "lose";
+      break;
+  }
+  console.log(res);
+  console.log(p);
+  return <div>{p}</div>;
 }
 
 function Rps() {
@@ -76,7 +97,16 @@ function Rps() {
           className="fa-solid fa-hand-scissors"
         ></i>
       </div>
-      <Result my={mychoice} com={computer} />
+      <div className="result">
+        <Result my={mychoice} com={computer} setResult={setResult} />
+      </div>
+      <div className="score">
+        <div className="scoreBox">
+          <div className="myscore"></div>
+          <div className="comscore"></div>
+        </div>
+        <div class="odds"></div>
+      </div>
     </div>
   );
 }
