@@ -1,0 +1,12 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-image: linear-gradient(to right, #f83600 0%, #f9d423 100%);
+}
