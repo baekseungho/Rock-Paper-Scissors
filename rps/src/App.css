@@ -10,3 +10,15 @@
   height: 100vh;
   background-image: linear-gradient(to right, #f83600 0%, #f9d423 100%);
 }
+
+.win {
+  border: 5px solid greenyellow;
+}
+
+.lose {
+  border: 5px solid red;
+}
+
+.tie {
+  border: 5px solid #000;
+}

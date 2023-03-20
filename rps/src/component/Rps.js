@@ -4,6 +4,8 @@ import "./Rps.css";
 function Result(props) {
   const res = props.my - props.com;
   let p = "";
+  props.result(res);
+
   switch (res) {
     case -2:
       p = "win";
@@ -21,24 +23,24 @@ function Result(props) {
       p = "lose";
       break;
   }
-  console.log(res);
-  console.log(p);
   return <div>{p}</div>;
 }
 
 function Rps() {
   let [mychoice, setMychoice] = useState(0);
   let [computer, setComputer] = useState(0);
-  let [result, setResult] = useState(0);
+  let [result, setResult] = useState(mychoice - computer);
+  let ccounter = 0;
+  let mcounter = 0;
   return (
     <div className="wrapper">
       <div className="vs">
         <div
           className="mychoice box"
           style={
-            result == -2 || 1
+            result === (-2 || 1)
               ? { borderColor: "yellowgreen" }
-              : result == -1 || 2
+              : result === (-1 || 2)
               ? { borderColor: "red" }
               : { borderColor: "black" }
           }
@@ -49,9 +51,9 @@ function Rps() {
         <div
           className="computer box"
           style={
-            result == -2 || 1
+            result === (-2 || 1)
               ? { borderColor: "red" }
-              : result == -1 || 2
+              : result === (-1 || 2)
               ? { borderColor: "yellowgreen" }
               : { borderColor: "black" }
           }
@@ -65,7 +67,6 @@ function Rps() {
           onClick={() => {
             setMychoice(1);
             setComputer(Math.floor(Math.random() * 3) + 1);
-            setResult(mychoice - computer);
             console.log(
               "my:" + mychoice + "com:" + computer + "result:" + result
             );
@@ -76,8 +77,6 @@ function Rps() {
           onClick={() => {
             setMychoice(2);
             setComputer(Math.floor(Math.random() * 3) + 1);
-            setResult(mychoice - computer);
-
             console.log(
               "my:" + mychoice + "com:" + computer + "result:" + result
             );
@@ -88,8 +87,6 @@ function Rps() {
           onClick={() => {
             setMychoice(3);
             setComputer(Math.floor(Math.random() * 3) + 1);
-            setResult(mychoice - computer);
-
             console.log(
               "my:" + mychoice + "com:" + computer + "result:" + result
             );
@@ -98,14 +95,21 @@ function Rps() {
         ></i>
       </div>
       <div className="result">
-        <Result my={mychoice} com={computer} setResult={setResult} />
+        <Result
+          my={mychoice}
+          com={computer}
+          result={setResult}
+          ccounter={ccounter}
+        />
       </div>
       <div className="score">
         <div className="scoreBox">
-          <div className="myscore"></div>
-          <div className="comscore"></div>
+          <div className="myscore">My score: {mcounter}</div>
+          <div className="comscore">Computer score: {ccounter}</div>
         </div>
-        <div class="odds"></div>
+        <div className="odds">
+          승률: {(mcounter / (mcounter + ccounter)) * 100}%
+        </div>
       </div>
     </div>
   );
