@@ -8,15 +8,15 @@ import { useState } from "react";
 const choice = {
   rock: {
     name: "Rock",
-    img: "1.png",
+    img: "https://thumb.photo-ac.com/47/473ef77f5797ec0fd8619c5236c85fba_t.jpeg",
   },
   paper: {
     name: "Paper",
-    img: "2.png",
+    img: "https://korearps.kr/wp-content/uploads/sites/75/2020/03/slider-pic-102.png",
   },
   scissors: {
     name: "Scissors",
-    img: "3.png",
+    img: "https://t1.daumcdn.net/tistoryfile/fs12/3_tistory_2009_01_12_07_49_496a778f3d93a?original",
   },
 };
 
