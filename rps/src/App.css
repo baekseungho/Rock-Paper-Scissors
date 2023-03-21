@@ -22,3 +22,9 @@
 .tie {
   border: 5px solid #000;
 }
+
+.resultBox {
+  position: absolute;
+  bottom: 30px;
+  width: 48%;
+}

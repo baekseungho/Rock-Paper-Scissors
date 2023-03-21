@@ -37,17 +37,19 @@ const Box = (props) => {
           item값이 null이라면 false를 리턴하니까 
           우항이 실행되지 않는다.(렌더링X)*/}
       <img src={props.item && props.item.img}></img>
-      <h2
-        className={
-          result == "TIE"
-            ? "tiet result"
-            : result == "WIN"
-            ? "wint result"
-            : "loset result"
-        }
-      >
-        {result}
-      </h2>
+      <div className="resultBox">
+        <h2
+          className={
+            result == "TIE"
+              ? "tiet result"
+              : result == "WIN"
+              ? "wint result"
+              : "loset result"
+          }
+        >
+          {result}
+        </h2>
+      </div>
     </div>
   );
 };

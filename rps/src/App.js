@@ -1,4 +1,5 @@
 import "./App.css";
+import "./component/Rps.css";
 import Rps from "./component/Rps";
 import React from "react";
 import Box from "./component/Box";
@@ -23,6 +24,8 @@ function App() {
   const [userSelect, setUserSelect] = useState(null);
   const [computerSelect, setComputerSelect] = useState(null);
   const [result, setResult] = useState("");
+  const [mcounter, setMcounter] = useState(0);
+  const [ccounter, setCcounter] = useState(0);
 
   const play = (userChoice) => {
     console.log(userChoice, "선택됨!");
@@ -36,6 +39,7 @@ function App() {
     // 2. 컴퓨터가 선택한 값
     // 두 값을 judgment함수에 매개변수로 보내준다.
     setResult(judgment(choice[userChoice], computerChoice));
+    score(choice[userChoice], computerChoice);
   };
 
   const judgment = (user, computer) => {
@@ -56,6 +60,22 @@ function App() {
       return computer.name == "Paper" ? "WIN" : "LOSE";
     else if (user.name == "Paper")
       return computer.name == "Rock" ? "WIN" : "LOSE";
+  };
+
+  const score = (user, computer) => {
+    if (user.name == computer.name) {
+    } else if (user.name == "Rock")
+      computer.name == "Paper"
+        ? setCcounter(ccounter + 1)
+        : setMcounter(mcounter + 1);
+    else if (user.name == "Scissors")
+      computer.name == "Paper"
+        ? setMcounter(mcounter + 1)
+        : setCcounter(ccounter + 1);
+    else if (user.name == "Paper")
+      computer.name == "Rock"
+        ? setMcounter(mcounter + 1)
+        : setCcounter(ccounter + 1);
   };
 
   const randomChoice = () => {
@@ -82,22 +102,31 @@ function App() {
           <Box title="Computer" item={computerSelect} result={result} />
         </div>
       </div>
-      <div className="btn-list">
-        {/* play함수한테 매개변수로 값을 전달한다
+
+      {/* play함수한테 매개변수로 값을 전달한다
             리액트에서는 play() UI를 그려줄 때 해당 함수를 실행 시킨다.
             onClick시 실행되게 하고 싶다면 콜백함수 형태로 전달해줘야 한다.
         */}
 
-        <div className="footer">
-          <i
-            onClick={() => play("rock")}
-            className="fa-solid fa-hand-back-fist"
-          ></i>
-          <i onClick={() => play("paper")} className="fa-solid fa-hand"></i>
-          <i
-            onClick={() => play("scissors")}
-            className="fa-solid fa-hand-scissors"
-          ></i>
+      <div className="footer">
+        <i
+          onClick={() => play("rock")}
+          className="fa-solid fa-hand-back-fist"
+        ></i>
+        <i onClick={() => play("paper")} className="fa-solid fa-hand"></i>
+        <i
+          onClick={() => play("scissors")}
+          className="fa-solid fa-hand-scissors"
+        ></i>
+      </div>
+
+      <div className="score">
+        <div className="scoreBox">
+          <div className="myscore">My score: {mcounter}</div>
+          <div className="comscore">Computer score: {ccounter}</div>
+        </div>
+        <div className="odds">
+          승률: {((mcounter / (mcounter + ccounter)) * 100).toFixed(2)}%
         </div>
       </div>
     </div>
